@@ -1,0 +1,20 @@
+[project]
+name = "NewForge"
+version = "0.0.2"
+description = "Emulator of the boost factor for the dark matter power spectrum in f(R) gravity models based on Arepo simulations"
+readme = "README.rst"
+requires-python = ">=3.6"
+license = {file = "LICENSE.txt"}
+keywords = ["modified gravity", "cosmology", "f(R)", "Dark Matter", "Power spectrum"]
+authors = [
+  {name = "Bartolomeo Fiorini", email = "bartolomeo.fiorini@port.ac.uk"},
+]
+classifiers = [
+  "Development Status :: Production",
+  "Programming Language :: Python"
+]
+
+dependencies = [
+  "numpy",
+  "scipy",
+]
