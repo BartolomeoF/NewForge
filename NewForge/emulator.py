@@ -1,9 +1,10 @@
 # Import required packages/functions --- The emulator requires sklearn installed ---
 import pickle as pk
 import numpy as np
-from pkg_resources import resource_stream
 import os
 from scipy.interpolate import InterpolatedUnivariateSpline
+
+CACHE_DIR = os.path.join(os.path.dirname(__file__), 'cache')
 
 
 # Bounds of the interpolation range
@@ -38,12 +39,12 @@ def rescale_param(cosmo_params,key):
 class BoostPredictor:
     def __init__(self):
         print ("Loading model and related data")
-        with resource_stream('NewForge','/cache/weights.pkl') as f:
+        with open(os.path.join(CACHE_DIR, 'weights.pkl'), 'rb') as f:
             self.weights = pk.load(f)
         self.act_fun_list=[np.tanh, np.tanh, np.tanh, id_fun]
-        self.table_mean = np.load(resource_stream('NewForge','/cache/TableMean.npy'), allow_pickle=True)
-        self.k_vals = np.load(resource_stream('NewForge','/cache/k_vals.npy'), allow_pickle=True)
-        with resource_stream('NewForge','/cache/pca.pkl') as f:
+        self.table_mean = np.load(os.path.join(CACHE_DIR, 'TableMean.npy'), allow_pickle=True)
+        self.k_vals = np.load(os.path.join(CACHE_DIR, 'k_vals.npy'), allow_pickle=True)
+        with open(os.path.join(CACHE_DIR, 'pca.pkl'), 'rb') as f:
             self.pca_components = pk.load(f)
 
     def model(self, in_array):

@@ -1,5 +1,6 @@
+import os
 import numpy as np
-from pkg_resources import resource_stream
+CACHE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'cache')
 
 def test_predict(model):
     # set reference parameters
@@ -9,7 +10,7 @@ def test_predict(model):
     z = 1
 
     Bk = model.predict(fR0,z,cosmo_params)
-    Bk_ref = np.load(resource_stream('NewForge','cache/Test_Bk.npy'), allow_pickle=True)
+    Bk_ref = np.load(os.path.join(CACHE_DIR, 'Test_Bk.npy'), allow_pickle=True)
 
     assert all(abs(Bk-Bk_ref)<1e-7) , f"Test failed: the model could not reproduce the reference boost factor."
 
