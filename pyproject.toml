@@ -1,6 +1,6 @@
 [project]
 name = "NewForge"
-version = "0.0.2"
+version = "0.0.3"
 description = "Emulator of the boost factor for the dark matter power spectrum in f(R) gravity models based on Arepo simulations"
 readme = "README.rst"
 requires-python = ">=3.6"
